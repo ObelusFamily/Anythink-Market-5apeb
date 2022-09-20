@@ -1,8 +1,8 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import agent from "../agent";
-import { connect } from "react-redux";
-import { ITEM_FAVORITED, ITEM_UNFAVORITED } from "../constants/actionTypes";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import agent from '../agent';
+import { connect } from 'react-redux';
+import { ITEM_FAVORITED, ITEM_UNFAVORITED } from '../constants/actionTypes';
 
 const mapDispatchToProps = (dispatch) => ({
   favorite: (slug) =>
@@ -32,21 +32,21 @@ const ItemPreview = (props) => {
   return (
     <div
       className="card bg-dark border-light p-3"
-      style={{ borderRadius: "20px" }}
+      style={{ borderRadius: '20px' }}
     >
       {item.image ? (
         <img
           alt={item.title}
           src={item.image}
           className="card-img-top item-img"
-          style={{ borderRadius: "20px" }}
+          style={{ borderRadius: '20px' }}
         />
       ) : (
         <img
-          alt={item.title || "item"}
-          src="/placeholder.png"gs
+          alt={item.title || 'item'}
+          src="/placeholder.png"
           className="card-img-top item-img"
-          style={{ borderRadius: "20px" }}
+          style={{ borderRadius: '20px' }}
         />
       )}
       <div className="card-body">

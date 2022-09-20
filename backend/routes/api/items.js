@@ -38,13 +38,13 @@ router.param('comment', function (req, res, next, id) {
 
 router.get('/items', function (req, res, next, title) {
   // Get a list of items
-  Item.find({ title: title }, (err, items) => {
-    if (err) {
+  Promise.all([Item.find({ title: title }).limit(20)])
+    .then(function (results) {
+      return res.status(200).send(results);
+    })
+    .catch((err) => {
       return res.status(500).send(err);
-    }
-
-    return res.status(200).send(items[0]);
-  });
+    });
 });
 
 router.get('/', auth.optional, function (req, res, next) {

@@ -35,19 +35,19 @@ const ItemPreview = (props) => {
       style={{ borderRadius: "20px" }}
     >
       {item.image ? (
-      <img
-        alt={item.title}
-        src={item.image}
-        className="card-img-top item-img"
-        style={{ borderRadius: "20px" }}
-      />
+        <img
+          alt={item.title}
+          src={item.image}
+          className="card-img-top item-img"
+          style={{ borderRadius: "20px" }}
+        />
       ) : (
-      <img
-        alt={item.title || "item"}
-        src="/placeholder.png"
-        className="card-img-top item-img"
-        style={{ borderRadius: "20px" }}
-      />
+        <img
+          alt={item.title || "item"}
+          src="/placeholder.png"gs
+          className="card-img-top item-img"
+          style={{ borderRadius: "20px" }}
+        />
       )}
       <div className="card-body">
         <Link to={`/item/${item.slug}`} className="text-white">

@@ -36,9 +36,9 @@ router.param('comment', function (req, res, next, id) {
     .catch(next);
 });
 
-router.get('/items', function (req, res, next, query) {
+router.get('/items', function (req, res, next, title) {
   // Get a list of items
-  Item.find({ query }, (err, items) => {
+  Item.find({ title }, (err, items) => {
     if (err) {
       return res.status(500).send(err);
     }
@@ -48,7 +48,7 @@ router.get('/items', function (req, res, next, query) {
 });
 
 router.get('/', auth.optional, function (req, res, next) {
-  var query = {};
+  var title = {};
   var limit = 100;
   var offset = 0;
 

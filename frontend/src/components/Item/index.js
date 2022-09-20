@@ -50,13 +50,16 @@ class Item extends React.Component {
           <div className="row bg-white p-4">
             <div className="col-6">
               <img
-                src={this.props.item.image}
+                src={
+                  this.props.item.image
+                    ? this.props.item.image
+                    : "/placeholder.png"
+                }
                 alt={this.props.item.title}
                 className="item-img"
                 style={{ height: "500px", width: "100%", borderRadius: "6px" }}
               />
             </div>
-
             <div className="col-6">
               <h1>{this.props.item.title}</h1>
               <ItemMeta item={this.props.item} canModify={canModify} />

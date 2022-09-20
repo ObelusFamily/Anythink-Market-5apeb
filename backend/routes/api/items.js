@@ -36,9 +36,9 @@ router.param('comment', function (req, res, next, id) {
     .catch(next);
 });
 
-router.get('/items', function (req, res, next, title) {
+router.get('/items', function (req, res, next, query) {
   // Get a list of items
-  Item.find({ title }, (err, items) => {
+  Item.find({ title: query }, (err, items) => {
     if (err) {
       return res.status(500).send(err);
     }

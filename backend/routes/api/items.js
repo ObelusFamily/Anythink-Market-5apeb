@@ -38,7 +38,7 @@ router.param('comment', function (req, res, next, id) {
 
 router.get('/items', function (req, res, next, title) {
   // Get a list of items
-  Item.find({ title: title }, (err, items) => {
+  Item.find({ title }, (err, items) => {
     if (err) {
       return res.status(500).send(err);
     }
@@ -48,7 +48,7 @@ router.get('/items', function (req, res, next, title) {
 });
 
 router.get('/', auth.optional, function (req, res, next) {
-  var title = {};
+  var query = {};
   var limit = 100;
   var offset = 0;
 

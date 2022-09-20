@@ -38,14 +38,12 @@ router.param('comment', function (req, res, next, id) {
 
 router.get('/items', function (req, res, next, title) {
   // Get a list of items
-  Promise.all([Item.find({ title: title }).limit(20)])
-    .then(function (results) {
-      return res.status(200).send(results);
-    })
-    .catch((err) => {
+  Item.find({ title, limit: 20 }, (err, items) => {
+    if (err) {
       return res.status(500).send(err);
-    });
-});
+    }
+    return res.status(200).send(items);
+  });
 
 router.get('/', auth.optional, function (req, res, next) {
   var query = {};

@@ -36,19 +36,11 @@ router.param('comment', function (req, res, next, id) {
     .catch(next);
 });
 
-router.get('/items', function (req, res, next, title) {
-  // Get a list of items
-  Item.find({ title, limit: 20 }, (err, items) => {
-    if (err) {
-      return res.status(500).send(err);
-    }
-    return res.status(200).send(items);
-  });
-
 router.get('/', auth.optional, function (req, res, next) {
   var query = {};
   var limit = 100;
   var offset = 0;
+  let title = '';
 
   if (typeof req.query.limit !== 'undefined') {
     limit = req.query.limit;
@@ -57,9 +49,21 @@ router.get('/', auth.optional, function (req, res, next) {
   if (typeof req.query.offset !== 'undefined') {
     offset = req.query.offset;
   }
+  if (typeof req.query.title !== 'undefined') {
+    title = req.query.title;
+  }
 
   if (typeof req.query.tag !== 'undefined') {
     query.tagList = { $in: [req.query.tag] };
+  }
+
+  if (req.query.title) {
+    Item.find({ title }, (err, items) => {
+      if (err) {
+        return res.status(500).send(err);
+      }
+      return res.status(200).send(items);
+    });
   }
 
   Promise.all([
